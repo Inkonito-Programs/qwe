@@ -214,6 +214,8 @@
   // Массив для хранения всех маркеров
   var markers = [];
 
+  var phone = [];
+
   // Получаем все элементы <p> с текстом внутри iframe
   var paragraphs = iframeContent.getElementsByTagName('p');
 
@@ -222,37 +224,51 @@
     paragraphs[i].addEventListener('click', function(event) {
       // Сброс состояния для всех маркеров
       for (var j = 0; j < markers.length; j++) {
-        markers[j].setIcon(customIcon); // Вернуть исходную иконку
+        markers[j].setIcon(customIcon);
+
       }
+      for (var j = 0; j < phone.length; j++) {
+        phone[j].setIcon(tours_360);
+
+      }
+
 
       // Получаем текст нажатого элемента
       var selectedText = event.target.textContent.trim();
 
       // Выполняем определенное действие на основе выбранного текста
       if (selectedText === '68. Церковь Богоявления Господня') {
-        // Ваш код изменения иконки для выбранного маркера
+
         var selectedMarker = L.marker(hram1, { icon: tours_360_backlight }).addTo(map).bindPopup(`Церковь Богоявления Господня <br><br> <button onclick="window.location.href = 'str/panorama_yar10.html';">360°</button>`);
-        markers.push(selectedMarker);
+        phone.push(selectedMarker);
+
+
       } else if (selectedText === '1. Кафедральный Успенский собор') {
-        // Ваш код изменения иконки для выбранного маркера
+
         var selectedMarker = L.marker(hram6, { icon: customIcon_backlight }).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br> <p style="text-align: center;"><button onclick="showmodel3()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор"; });
+
         markers.push(selectedMarker);
+
       }
       else if (selectedText === '2. Церковь Николы Рубленого') {
-        // Ваш код изменения иконки для выбранного маркера
-        var selectedMarker = L.marker(hram6, { icon: customIcon_backlight }).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br> <p style="text-align: center;"><button onclick="showmodel3()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор"; });
+
+        var selectedMarker = L.marker(hram2, { icon: customIcon_backlight }).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br> <p style="text-align: center;"><button onclick="showmodel3()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор"; });
         markers.push(selectedMarker);
       }
       else if (selectedText === '4. Ильинско-Тихоновская церковь') {
-        // Ваш код изменения иконки для выбранного маркера
-        var selectedMarker = L.marker(hram6, { icon: customIcon_backlight }).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br> <p style="text-align: center;"><button onclick="showmodel3()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор"; });
+
+        var selectedMarker = L.marker(hram7, { icon: customIcon_backlight }).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br> <p style="text-align: center;"><button onclick="showmodel3()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор"; });
         markers.push(selectedMarker);
+
       }
       else if (selectedText === '5. Церковь Иоанна Златауста') {
-        // Ваш код изменения иконки для выбранного маркера
-        var selectedMarker = L.marker(hram6, { icon: customIcon_backlight }).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br> <p style="text-align: center;"><button onclick="showmodel3()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор"; });
+
+        var selectedMarker = L.marker(hram3, { icon: customIcon_backlight }).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br> <p style="text-align: center;"><button onclick="showmodel3()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор"; });
         markers.push(selectedMarker);
-      } else if (selectedText === '84. Владимерская церковь (на Божедомке)') {
+
+      } 
+      else if (selectedText === '84. Владимерская церковь (на Божедомке)') {
+        
             const mSCS = L.marker(hram5,{icon: customIcon_backlight}).addTo(map).bindPopup(`Церковь на Божедомке <br><br> <p style="text-align: center;"><button onclick="showmodel2()">3D</button></p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь на Божедомке";});
             markers.push(selectedMarker);
 
