@@ -31,7 +31,7 @@
 
   <div align="left" class="map" id='map'><a class="btn-modal" href="#modal-block">путеводитель</a></div>
 
-  <div class="dm-overlay" id="win1" style="margim: 0 auto;">
+  <div class="dm-overlay" id="win1" style="margin: 0 auto;">
     <div class="dm-table" id="dm-table">
       <div class="dm-cell">
         <div class="dm-modal" style="width: 90%; height:100%;">
@@ -199,81 +199,49 @@
       closeBtn.addEventListener('click', () => {
         modal.style.display = 'none';
       });
-      
     
-    
-    
-    // Получаем доступ к iframe и меняем иконку определенного объекта по нажатию на его название в путеводителе
     var iframe = document.getElementById('myFrame');
-    
-    // Проверяем, что iframe успешно загружен
-    iframe.onload = function() {
-  // Получаем доступ к содержимому iframe
+iframe.onload = function() {
   var iframeContent = iframe.contentDocument || iframe.contentWindow.document;
 
-  // Массив для хранения всех маркеров
   var markers = [];
+  var phones = [];
 
-  var phone = [];
+  var paragraphs = iframeContent.getElementsByTagName('a');
 
-  // Получаем все элементы <p> с текстом внутри iframe
-  var paragraphs = iframeContent.getElementsByTagName('p');
-
-  // Добавляем обработчик событий для каждого элемента <p>
   for (var i = 0; i < paragraphs.length; i++) {
     paragraphs[i].addEventListener('click', function(event) {
       // Сброс состояния для всех маркеров
       for (var j = 0; j < markers.length; j++) {
         markers[j].setIcon(customIcon);
-
       }
-      for (var j = 0; j < phone.length; j++) {
-        phone[j].setIcon(tours_360);
-
+      for (var j = 0; j < phones.length; j++) {
+        phones[j].setIcon(tours_360_backlight);
       }
-
 
       // Получаем текст нажатого элемента
       var selectedText = event.target.textContent.trim();
 
       // Выполняем определенное действие на основе выбранного текста
       if (selectedText === '68. Церковь Богоявления Господня') {
-
         var selectedMarker = L.marker(hram1, { icon: tours_360_backlight }).addTo(map).bindPopup(`Церковь Богоявления Господня <br><br> <button onclick="window.location.href = 'str/panorama_yar10.html';">360°</button>`);
-        phone.push(selectedMarker);
-
-
+        phones.push(selectedMarker);
       } else if (selectedText === '1. Кафедральный Успенский собор') {
-
         var selectedMarker = L.marker(hram6, { icon: customIcon_backlight }).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br> <p style="text-align: center;"><button onclick="showmodel3()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор"; });
-
         markers.push(selectedMarker);
-
+      } else if (selectedText === '2. Церковь Николы Рубленого') {
+        var selectedMarker = L.marker(hram2, { icon: customIcon_backlight }).addTo(map).bindPopup(`Церковь Николая Чудотворца <br><br> <p style="text-align: center;"><button onclick="showmodel1()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Церковь Николая Чудотворца"; });
+        markers.push(selectedMarker);
+      } else if (selectedText === '4. Ильинско-Тихоновская церковь') {
+        var selectedMarker = L.marker(hram7, { icon: customIcon_backlight }).addTo(map).bindPopup(`Ильинско-Тихоновская церковь <br><br> <p style="text-align: center;"><button onclick="showmodel4()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Ильинско-Тихоновская церковь"; });
+        markers.push(selectedMarker);
+      } else if (selectedText === '5. Церковь Иоанна Златауста') {
+        var selectedMarker = L.marker(hram3, { icon: customIcon_backlight }).addTo(map).bindPopup(`Церковь Иоанна Златауста <br><br> <p style="text-align: center;"><button onclick="showmodel0()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Церковь Иоанна Златауста"; });
+        markers.push(selectedMarker);
+      } else if (selectedText === '84. Владимерская церковь (на Божедомке)') {
+        var selectedMarker = L.marker(hram5, { icon: customIcon_backlight }).addTo(map).bindPopup(`Церковь на Божедомке <br><br> <p style="text-align: center;"><button onclick="showmodel2()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Церковь на Божедомке"; });
+        markers.push(selectedMarker);
       }
-      else if (selectedText === '2. Церковь Николы Рубленого') {
-
-        var selectedMarker = L.marker(hram2, { icon: customIcon_backlight }).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br> <p style="text-align: center;"><button onclick="showmodel3()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор"; });
-        markers.push(selectedMarker);
-      }
-      else if (selectedText === '4. Ильинско-Тихоновская церковь') {
-
-        var selectedMarker = L.marker(hram7, { icon: customIcon_backlight }).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br> <p style="text-align: center;"><button onclick="showmodel3()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор"; });
-        markers.push(selectedMarker);
-
-      }
-      else if (selectedText === '5. Церковь Иоанна Златауста') {
-
-        var selectedMarker = L.marker(hram3, { icon: customIcon_backlight }).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br> <p style="text-align: center;"><button onclick="showmodel3()">3D</button></p>`).on('click', function() { document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор"; });
-        markers.push(selectedMarker);
-
-      } 
-      else if (selectedText === '84. Владимерская церковь (на Божедомке)') {
-        
-            const mSCS = L.marker(hram5,{icon: customIcon_backlight}).addTo(map).bindPopup(`Церковь на Божедомке <br><br> <p style="text-align: center;"><button onclick="showmodel2()">3D</button></p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь на Божедомке";});
-            markers.push(selectedMarker);
-
-          } 
-      // Добавьте аналогичные блоки для остальных элементов
     });
   }
 };
