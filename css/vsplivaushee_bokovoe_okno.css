@@ -2,28 +2,11 @@
   div.bokovoe_okno_pc{
     display: none;
   }
-  /* Кнопка */
-  .btn-modal {
-    position: absolute;
-    z-index: 9997; /*Указывает на сколько выше всех отображать данный элемент*/
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    padding: 0.5rem 1.5rem;
-    color: #fff;
-    text-decoration: none;
-    background-color: #83bec5;
-    transition: all 0.3s ease-out;
-    border-radius: 10px;
-  }
 
   .frame_bok_menu2 {
     height: 70vh;
     width: 90%;
     border-radius: 10px;
-  }
-  .btn-modal:hover {
-    background-color: #527c82;
   }
   
   /* Модальное окно */
@@ -76,9 +59,6 @@
 
 @media screen and (min-width: 1024px){
   /* Оформление панели */
-      .btn-modal{
-      display: none;
-      }
       #side-checkbox {
           display: none;
       }

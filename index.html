@@ -4,6 +4,7 @@
   <base target="_top">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="public, max-age=60">                                    <!--Разрешаем кеширование страницы сроком на одну минуту-->
 
   <title>Интернет музей г.Ярославль</title>
 
@@ -11,76 +12,95 @@
   <link href="css/vsplivaushee_okno.css" rel="stylesheet" type="text/css" media="screen" >          <!--Всплывающее окно-->
   <link href="css/vsplivaushee_bokovoe_okno.css" rel="stylesheet" type="text/css" media="screen" >  <!--Всплывающее боковое окно-->
   <link href="css/index.css" rel="stylesheet" type="text/css" media="screen" >                      <!--css страницы-->
-  <link rel="stylesheet" href="css/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link href="css/button-mobail_menu-open.css" rel="stylesheet" type="text/css" media="screen" >    <!--Кнопка открытия мобильного меню-->
+  <link href="css/button-putevoditel.css" rel="stylesheet" type="text/css" media="screen" >         <!--Кнопка - путеволитель-->
+  <link href="css/mobail_menu_index.css" rel="stylesheet" type="text/css" media="screen" >          <!--Мобильное меню-->
+  <link rel="stylesheet" href="css/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/><!--css для карты-->
   
-  <script src="js/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="js/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><!--js для карты-->
   <script src="js/respond.min.js"></script>
   <script type="module" src="js/model-viewer.min.js"></script>
-  
 </head>
 <body>
-
+    <!--Верхний блок с изображениями-->
     <div class="div-image">
-      <div class='collor_white' style="background-color: white; height: 6.3vw; width: 16%; position: fixed; top: 1.4vw; left: 1.5%; border-radius: 10px;">
-          <img class="logo-image" src="files/logo.webp">
-          <div>
-              <a href="https://youtu.be/NkJiYg3LUw4" style='background-color: white; border-radius: 5px; position: absolute; top: 7vw; left: 1.5%; font-size: 1.3vw; text-decoration: none;'><font color="#800000">&nbsp Видео по карте &nbsp</font></a>
-          </div>
-      </div>
-      <img class="old_gerb_image" src="files/gerb.webp">
-      <img class="nadpis_image" src="files/nadpis.webp">
+        <!--Белый заблюреный блок-->
+        <div class='collor_white' style="background-color: white; height: 6.3vw; width: 16%; position: fixed; top: 1.4vw; left: 1.5%; border-radius: 10px;">
+            <img class="logo-image" src="files/logo.webp">
+            <div>
+                <a href="https://youtu.be/NkJiYg3LUw4" style='background-color: white; border-radius: 5px; position: absolute; top: 7vw; left: 1.5%; font-size: 1.3vw; text-decoration: none;'><font color="#800000">&nbsp Видео по карте &nbsp</font></a>
+            </div>
+        </div>
+        <img class="old_gerb_image" src="files/gerb.webp">
+        <img class="nadpis_image" src="files/nadpis.webp">
     </div>
-  <div style="height: 2%;"></div>
-
-  <div class="curb">
+    <!--Оформляем пропуск перед картой-->
+    <div style="height: 2%;"></div>
+    
+    <!--Нижний бордюр в десктопной версии-->
+    <div class="curb">
       <div class="curb_text"><p style="color: #F0FFFF; margin-left: 1vw;">Тел: <font color="#FFFFE0">8 (4852) 30-41-75 </font></p></div>
       <div class="curb_text"><p style="color: #F0FFFF; position: fixed; right: 2vw;">Связь: <font color="#FFFFE0">ip-feedback@mail.ru</font></p></div>
-  </div>
+    </div>
 
-
-  <div align="left" class="map" id='map'><a class="btn-modal" href="#modal-block">путеводитель</a></div>
-
-  <div class="dm-overlay" id="win1" style="margin: 0 auto;">
-    <div class="dm-table" id="dm-table">
-      <div class="dm-cell">
-        <div class="dm-modal" style="width: 90%; height:100%;">
-          <br><a href="#close" class="close"></a>
-          <h3 id="myHeading">Онлайн реконструкция</h3>
-          <div class="pl-left">
-          </div>
-          <div>
-            <model-viewer style="width: 100%; height: 70vh;" alt="" src="" ar shadow-intensity="1" camera-controls touch-action="pan-y" id="modelHram"></model-viewer>
+    <!--Блок с картой-->
+    <div align="left" class="map" id='map'>
+        <a id="menu-toggle" class="button-mobail_menu-open" href="#"></a>
+        <a class="btn-modal" href="#modal-block">путеводитель</a>
+        <a class='youtube-link' href="https://youtu.be/NkJiYg3LUw4"><font color="#800000">&nbsp Видео по карте &nbsp</font></a>
+    </div>
+    
+    <!--Мобильное меню-->
+    <div id="modal-menu">
+        <div style='background-color: white; height: 90%; width: 97%; position: absolute; top: 1.4vw; left: 1.5%; border-radius: 10px;'>
+            <img class="logo-image" src="files/logo.webp">
+            <div class="curb_text"><p style="color: #4682B4; position: absolute; right: 2vw; bottom: 0px;">Связь: <font color="#4682B4">ip-feedback@mail.ru</font></p></div>
+        </div>
+    </div>
+    <div id="overlay"></div>
+    
+    <!--Модальное окно с 3D моделями-->
+    <div class="dm-overlay" id="win1" style="margin: 0 auto;">
+        <div class="dm-table" id="dm-table">
+          <div class="dm-cell">
+            <div class="dm-modal" style="width: 90%; height:100%;">
+              <br><a href="#close" class="close"></a>
+              <h3 id="myHeading">Онлайн реконструкция</h3>
+              <div class="pl-left">
+              </div>
+              <div>
+                <model-viewer style="width: 100%; height: 70vh;" alt="" src="" ar shadow-intensity="1" camera-controls touch-action="pan-y" id="modelHram"></model-viewer>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <!--Боковое всплывающее окно (PC)-->
-  <div class="bokovoe_okno_pc">
-    <input type="checkbox" id="side-checkbox" />
-    <div class="side-panel">
-        <label class="side-button-2" for="side-checkbox">+</label>
-        <div class="side-title">Путеводитель по карте:</div>
-        <iframe id="myFrame" class="frame_bok_menu" src="str/petevoditel.html" frameBorder="0"></iframe>
+    <!--Боковое вывлывающее меню (PC)-->
+    <div class="bokovoe_okno_pc">
+        <input type="checkbox" id="side-checkbox" />
+        <div class="side-panel">
+            <label class="side-button-2" for="side-checkbox">+</label>
+            <div class="side-title">Путеводитель по карте:</div>
+            <iframe id="myFrame" class="frame_bok_menu" src="str/petevoditel.html" frameBorder="0"></iframe>
+        </div>
+        <div class="side-button-1-wr">
+            <label class="side-button-1" for="side-checkbox">
+                <div class="side-b side-open">путеводитель</div>
+            </label>
+        </div>
     </div>
-    <div class="side-button-1-wr">
-        <label class="side-button-1" for="side-checkbox">
-            <div class="side-b side-open">путеводитель</div>
-        </label>
-    </div>
-  </div>
 
-  <!-- Модальное окно (phone)-->
-  <div class="bokovoe_okno_phone">
-    <!-- Содержимое модального окна -->
-    <div id="modal-block">
-      <h3>Путеводитель по карте</h3>
-      </br>
-      <a class="close-block" href="#close-block">X</a>
-      <iframe id="myFrame2" class="frame_bok_menu2" src="str/petevoditel.html" frameBorder="0"></iframe>
+    <!-- Модальное выплывающее окно (phone)-->
+    <div class="bokovoe_okno_phone">
+        <!-- Содержимое модального окна -->
+        <div id="modal-block">
+          <h3>Путеводитель по карте</h3>
+          </br>
+          <a class="close-block" href="#close-block">X</a>
+          <iframe id="myFrame2" class="frame_bok_menu2" src="str/petevoditel.html" frameBorder="0"></iframe>
+        </div>
     </div>
-  </div>
 
 <script>
     function ToMakeWork(){
@@ -255,16 +275,24 @@ iframe.onload = function() {
   }
 };
 
+
+
+// Вызов мобильного меню.
+document.getElementById("menu-toggle").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById("modal-menu").classList.toggle("open");
+});
+
+document.addEventListener("click", function(event) {
+    var modalMenu = document.getElementById("modal-menu");
+    var isClickInsideModal = modalMenu.contains(event.target);
+    var isClickOnToggle = event.target.id === "menu-toggle";
+
+    if (!isClickInsideModal && !isClickOnToggle && modalMenu.classList.contains("open")) {
+        modalMenu.classList.remove("open");
+    }
+});
+
 </script>
-
-
-
-<style>
-.leaflet-container {
-    background: #fff;
-    outline: 0;
-}
-</style>
-
 </body>
 </html>

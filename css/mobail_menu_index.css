@@ -1,0 +1,42 @@
+#modal-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #B0C4DE;
+    overflow: hidden;
+    transition: height 0.3s;
+    border-radius: 5px 5px 0px 0;
+    z-index: 9999;
+}
+
+#modal-menu.open {
+    height: 30%; /* Регулируйте высоту меню здесь */
+    min-height: 177.35px;
+}
+
+#modal-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+#modal-menu ul li {
+    padding: 10px;
+}
+
+#modal-menu ul li a {
+    color: #333;
+    text-decoration: none;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
