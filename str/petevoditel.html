@@ -551,4 +551,12 @@
     </font>
 
 </body>
+<script>
+// Функция для отправки сообщения на главную страницу
+function sendMessage(message) {
+  // Отправляем сообщение с помощью postMessage
+  // window.parent ссылается на главную страницу, содержащую iframe
+  window.parent.postMessage(message, "http://scazochnik.ru/str/sayt_musey/index.html");
+}
+</script>
 </html>
