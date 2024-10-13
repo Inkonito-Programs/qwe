@@ -8,18 +8,16 @@
 
   <title>Интернет музей г.Ярославль</title>
 
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />                               <!--favicon-->
-  <link href="css/vsplivaushee_okno.css" rel="stylesheet" type="text/css" media="screen" >          <!--Всплывающее окно-->
-  <link href="css/vsplivaushee_bokovoe_okno.css" rel="stylesheet" type="text/css" media="screen" >  <!--Всплывающее боковое окно-->
-  <link href="css/index.css" rel="stylesheet" type="text/css" media="screen" >                      <!--css страницы-->
-  <link href="css/button-mobail_menu-open.css" rel="stylesheet" type="text/css" media="screen" >    <!--Кнопка открытия мобильного меню-->
-  <link href="css/button-putevoditel.css" rel="stylesheet" type="text/css" media="screen" >         <!--Кнопка - путеволитель-->
-  <link href="css/mobail_menu_index.css" rel="stylesheet" type="text/css" media="screen" >          <!--Мобильное меню-->
-  <link rel="stylesheet" href="css/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/><!--css для карты-->
-  
-  <script src="https://cdn.jsdelivr.net/hammerjs/2.0.8/hammer.min.js"></script>
-  
-  <script src="js/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><!--js для карты-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /> <!--favicon-->
+  <link href="css/vsplivaushee_okno.css" rel="stylesheet" type="text/css" media="screen" > <!--Всплывающее окно с контентом-->
+  <link href="css/vsplivaushee_bokovoe_okno.css" rel="stylesheet" type="text/css" media="screen" > <!--Всплывающее боковое окно с путеводителем-->
+  <link href="css/index.css" rel="stylesheet" type="text/css" media="screen" > <!--css страницы-->
+  <link href="css/button-mobail_menu-open.css" rel="stylesheet" type="text/css" media="screen" > <!--Кнопка открытия мобильного меню-->
+  <link href="css/button-putevoditel.css" rel="stylesheet" type="text/css" media="screen" > <!--Кнопка - путеволитель-->
+  <link href="css/mobail_menu_index.css" rel="stylesheet" type="text/css" media="screen" > <!--Мобильное меню-->
+  <link rel="stylesheet" href="css/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/> <!--css для карты-->
+  <!--script src="https://cdn.jsdelivr.net/hammerjs/2.0.8/hammer.min.js"></script-->
+  <script src="js/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script> <!--js для карты-->
   <script src="js/respond.min.js"></script>
   <script type="module" src="js/model-viewer.min.js"></script>
 </head>
@@ -105,10 +103,9 @@
         </div>
     </div>
 <script>
-    function ToMakeWork(){
-        console.warn(`yar`)
-        }
-
+    
+    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на пустую модель.
+    //Делает видимым модальное окно win1 с контентом по меткам на карте и отображает iframo-pedia.
     function showmodelNone(){
       let modelHram = document.getElementById("modelHram")
       let win1 = document.getElementById("win1")
@@ -118,7 +115,9 @@
 
       document.getElementById('iframo-pedia').style.display = 'block';
     }
-
+    
+    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
+    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
     function showmodel0(){
       let modelHram = document.getElementById("modelHram")
       let win1 = document.getElementById("win1")
@@ -128,7 +127,9 @@
       
       document.getElementById('iframo-pedia').style.display = 'none';
     }
-
+    
+    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
+    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
     function showmodel1(){
       let modelHram = document.getElementById("modelHram")
       let win1 = document.getElementById("win1")
@@ -139,6 +140,8 @@
       document.getElementById('iframo-pedia').style.display = 'none';
     }
 
+    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
+    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
     function showmodel2(){
       let modelHram = document.getElementById("modelHram")
       let win1 = document.getElementById("win1")
@@ -149,6 +152,8 @@
       document.getElementById('iframo-pedia').style.display = 'none';
     }
 
+    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
+    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
     function showmodel3(){
       let modelHram = document.getElementById("modelHram")
       let win1 = document.getElementById("win1")
@@ -158,6 +163,9 @@
       
       document.getElementById('iframo-pedia').style.display = 'none';
     }
+
+    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
+    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
     function showmodel4(){
       let modelHram = document.getElementById("modelHram")
       let win1 = document.getElementById("win1")
@@ -168,14 +176,52 @@
       document.getElementById('iframo-pedia').style.display = 'none';
     }
 
+    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
+    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
+    function showmodel5(){
+      let modelHram = document.getElementById("modelHram")
+      let win1 = document.getElementById("win1")
+
+      modelHram.src = "files/3D_files/mitropolichyi_palati.glb"
+      win1.style.display = "flex"
+      
+      document.getElementById('iframo-pedia').style.display = 'none';
+    }
+    
+    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
+    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
+    function showmodel6(){
+      let modelHram = document.getElementById("modelHram")
+      let win1 = document.getElementById("win1")
+
+      modelHram.src = "files/3D_files/cerkov_simeona_stolpnica.glb"
+      win1.style.display = "flex"
+      
+      document.getElementById('iframo-pedia').style.display = 'none';
+    }
+    
+    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
+    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
+    function showmodel7(){
+      let modelHram = document.getElementById("modelHram")
+      let win1 = document.getElementById("win1")
+
+      modelHram.src = "files/3D_files/cerkov_nicoli_nadeina.glb"
+      win1.style.display = "flex"
+      
+      document.getElementById('iframo-pedia').style.display = 'none';
+    }
 
 
+
+    // Создаем карту и привязываем ее к элементу на сайте с id map (в нашем случае <div>)
     const map = L.map('map', {
       crs: L.CRS.Simple,
       minZoom: -1,
       maxZoom: 4
     });
 
+    // Обработка координат карты
     const yx = L.latLng;
 
     function xy(x, y) {
@@ -184,15 +230,27 @@
       }
       return yx(y, x);
     }
-
-    const bounds = [xy(0, 0), xy(1000, 1000)]; // Replace these coordinates with your map bounds
+    
+    // Здесь создается массив, который определяет границы (или пределы) для наложенного изображения на карту.
+    // Эти вызовы функции xy создают координаты для верхнего левого (0, 0) и нижнего правого (1000, 1000) углов карты.
+    // Так как мы работаем с простой системой координат, эти координаты будут использоваться для привязки изображения к карте.
+    const bounds = [xy(0, 0), xy(1000, 1000)];
+    
+    // Наложение изображения
     const image = L.imageOverlay('files/maps/old_Yaroslavl.webp', bounds).addTo(map);
-
-    const topLeft = xy(0, 0); // Define top-left corner coordinates
-    const bottomRight = xy(1000, 1000); // Define bottom-right corner coordinates
+    
+    // Определение углов карты
+    // Здесь снова создаются координаты для углов карты, используя функцию xy.
+    // Угол верхнего левого соответствует координатам (0, 0), а нижнего правого — (1000, 1000).
+    // Эти координаты будут использоваться для определения видимых границ карты.
+    const topLeft = xy(0, 0);
+    const bottomRight = xy(1000, 1000);
+    
+    // Максимальные границы карты
     const boundsLatLng = L.latLngBounds(topLeft, bottomRight);
     map.setMaxBounds(boundsLatLng);
-
+    
+    //
     map.setView(xy(500, 500), -1); // Set initial view center and zoom level
 
     const customIcon = L.icon({
@@ -227,6 +285,10 @@
     const hram5 = xy(141.0, 430.5);//Маркер используется <<Храм на Божедомке>>
     const hram6 = xy(932.5, 95.5);//Маркер используется <<Кафедральный Успенский собор>>
     const hram7 = xy(940.0, 165.0);//Маркер используется <<Ильинско-Тихоновская церковь>>
+    const hram8 = xy(735.5, 554.0);//Маркер используется <<Церковь Симеона Столпника>>
+    const hram9 = xy(868.0, 360.0);//Маркер используется <<>>
+    const building1 = xy(942.5, 128.0);//Маркер используется <<Архиерейский дом (бывш. метрополичьи палаты)>>
+        
 
     //(№1) модель
     const mDLP = L.marker(hram6,{icon: customIcon}).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br>
@@ -253,6 +315,18 @@
         <p style="text-align: center;">
             <button onclick="showmodel0()">3D</button>
         </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Иоанна Златауста";});
+    
+    //(№7) модель
+    const mQDFE = L.marker(building1,{icon: customIcon}).addTo(map).bindPopup(`Митрополичьи палаты <br><br>
+        <p style="text-align: center;">
+            <button onclick="showmodel5()">3D</button>
+        </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Архиерейский дом (бывш. метрополичьи палаты)";});
+    
+    //(№13) модель
+    const mQDwe = L.marker(hram9,{icon: customIcon}).addTo(map).bindPopup(`Церковь Николы Надеина <br><br>
+        <p style="text-align: center;">
+            <button onclick="showmodel7()">3D</button>
+        </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Николы Надеина";});
         
     //(№68) панарама + информация
     const mSol = L.marker(hram1,{icon: tours_360}).addTo(map).bindPopup(`Церковь Богоявления Господня <br><br> 
@@ -260,6 +334,12 @@
             <button onclick="window.location.href = 'str/panarams/panorama_yar10.html';">360°</button>
             <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church of the Epiphany.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>
         </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Богоявления Господня";});
+    
+    //(№70) модель
+    const mQDFs = L.marker(hram8,{icon: customIcon}).addTo(map).bindPopup(`Церковь Симеона Столпника <br><br>
+        <p style="text-align: center;">
+            <button onclick="showmodel6()">3D</button>
+        </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Симеона Столпника";});
         
     //(№84) модель + информация
     const mSCS = L.marker(hram5,{icon: customIcon}).addTo(map).bindPopup(`Церковь на Божедомке <br><br>
@@ -368,6 +448,26 @@ iframe.onload = function() {
           })
           .openPopup();
         markers.push(selectedMarker);
+        
+      } else if (selectedText === '7. Архиерейский  дом (бывш. метрополичьи палаты)') {
+        var selectedMarker = L.marker(building1, { icon: customIcon_backlight })
+          .addTo(map)
+          .bindPopup(`Митрополичьи палаты <br><br> <p style="text-align: center;"><button onclick="showmodel5()">3D</button></p>`)
+          .on('click', function() {
+            document.getElementById("myHeading").innerHTML = "Архиерейский дом (бывш. метрополичьи палаты)";
+          })
+          .openPopup();
+        markers.push(selectedMarker);
+    
+      } else if (selectedText === '13. Церковь Николы Надеина') {
+        var selectedMarker = L.marker(hram9, { icon: customIcon_backlight })
+          .addTo(map)
+          .bindPopup(`Церковь Николы Надеина <br><br> <p style="text-align: center;"><button onclick="showmodel7()">3D</button></p>`)
+          .on('click', function() {
+            document.getElementById("myHeading").innerHTML = "Церковь Николы Надеина";
+          })
+          .openPopup();
+        markers.push(selectedMarker);
       
       } else if (selectedText === '68. Церковь Богоявления Господня') {
         var selectedMarker = L.marker(hram1, { icon: tours_360_backlight })
@@ -375,6 +475,16 @@ iframe.onload = function() {
           .bindPopup(`Церковь Богоявления Господня <br><br> <p style="text-align: center;"><button onclick="window.location.href = 'str/panorama_yar10.html';">360°</button><button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church of the Epiphany.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button></p>`)
           .openPopup();
         phones.push(selectedMarker);
+    
+      } else if (selectedText === '70. Церковь Симеона Столпника') {
+        var selectedMarker = L.marker(hram8, { icon: customIcon_backlight })
+          .addTo(map)
+          .bindPopup(`Церковь Симеона Столпника <br><br> <p style="text-align: center;"><button onclick="showmodel6()">3D</button></p>`)
+          .on('click', function() {
+            document.getElementById("myHeading").innerHTML = "Церковь Симеона Столпника";
+          })
+          .openPopup();
+        markers.push(selectedMarker);
         
       } else if (selectedText === '84. Владимерская церковь (на Божедомке)') {
         var selectedMarker = L.marker(hram5, { icon: customIcon_backlight })
