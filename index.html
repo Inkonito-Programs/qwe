@@ -60,7 +60,7 @@
     <div id="overlay"></div>
     
     <!--Модальное окно с 3D моделями-->
-    <div class="dm-overlay" id="win1" style="margin: 0 auto;">
+    <div class="dm-overlay" id="win1" style="overflow-y: hidden; margin: 0 auto;">
         <div class="dm-table" id="dm-table">
           <div class="dm-cell">
             <div class="dm-modal" style="width: 90%; height:100%;">
@@ -335,10 +335,11 @@
             <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church of the Epiphany.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>
         </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Богоявления Господня";});
     
-    //(№70) модель
+    //(№70) модель + информация
     const mQDFs = L.marker(hram8,{icon: customIcon}).addTo(map).bindPopup(`Церковь Симеона Столпника <br><br>
         <p style="text-align: center;">
             <button onclick="showmodel6()">3D</button>
+            <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/cerkov_simeona_stolpnica.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>
         </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Симеона Столпника";});
         
     //(№84) модель + информация
@@ -479,7 +480,7 @@ iframe.onload = function() {
       } else if (selectedText === '70. Церковь Симеона Столпника') {
         var selectedMarker = L.marker(hram8, { icon: customIcon_backlight })
           .addTo(map)
-          .bindPopup(`Церковь Симеона Столпника <br><br> <p style="text-align: center;"><button onclick="showmodel6()">3D</button></p>`)
+          .bindPopup(`Церковь Симеона Столпника <br><br> <p style="text-align: center;"><button onclick="showmodel6()">3D</button><button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/cerkov_simeona_stolpnica.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button></p>`)
           .on('click', function() {
             document.getElementById("myHeading").innerHTML = "Церковь Симеона Столпника";
           })
