@@ -16,7 +16,7 @@
   <link href="css/button-putevoditel.css" rel="stylesheet" type="text/css" media="screen" > <!--Кнопка - путеволитель-->
   <link href="css/mobail_menu_index.css" rel="stylesheet" type="text/css" media="screen" > <!--Мобильное меню-->
   <link rel="stylesheet" href="css/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/> <!--css для карты-->
-  <!--script src="https://cdn.jsdelivr.net/hammerjs/2.0.8/hammer.min.js"></script-->
+
   <script src="js/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script> <!--js для карты-->
   <script src="js/respond.min.js"></script>
   <script type="module" src="js/model-viewer.min.js"></script>
@@ -103,113 +103,49 @@
         </div>
     </div>
 <script>
-    
-    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на пустую модель.
-    //Делает видимым модальное окно win1 с контентом по меткам на карте и отображает iframo-pedia.
-    function showmodelNone(){
-      let modelHram = document.getElementById("modelHram")
-      let win1 = document.getElementById("win1")
-      
-      modelHram.src = "files/3D_files/none.glb"
-      win1.style.display = "flex"
 
-      document.getElementById('iframo-pedia').style.display = 'block';
+    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на указанный.
+    //Делает видимым модальное окно win1 с контентом по меткам на карте и отображает (true) или запрещает отображение (false) iframo-pedia.
+    function showModel(modelSrc, showIframopedia = false) {
+        let modelHram = document.getElementById("modelHram");
+        let win1 = document.getElementById("win1");
+
+        modelHram.src = modelSrc;
+        win1.style.display = "flex";
+        
+        document.getElementById('iframo-pedia').style.display = showIframopedia ? 'block' : 'none';
     }
     
-    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
-    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
+    //Данные функции при вызове вызывают функцию showModel() и передают в нее источник нужной нам 3D модели и параметр showIframopedia принимающий значение true или false
+    function showmodelNone() {
+        showModel("files/3D_files/none.glb", true);
+    }
     function showmodel0(){
-      let modelHram = document.getElementById("modelHram")
-      let win1 = document.getElementById("win1")
-
-      modelHram.src = "files/3D_files/cerkov_ioanna_zlatausta.glb"
-      win1.style.display = "flex"
-      
-      document.getElementById('iframo-pedia').style.display = 'none';
+      showModel("files/3D_files/cerkov_ioanna_zlatausta.glb");
     }
-    
-    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
-    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
     function showmodel1(){
-      let modelHram = document.getElementById("modelHram")
-      let win1 = document.getElementById("win1")
-
-      modelHram.src = "files/3D_files/cerkov_nikolaya_chudotvorca.glb"
-      win1.style.display = "flex"
-      
-      document.getElementById('iframo-pedia').style.display = 'none';
+      showModel("files/3D_files/cerkov_nikolaya_chudotvorca.glb");
     }
-
-    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
-    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
     function showmodel2(){
-      let modelHram = document.getElementById("modelHram")
-      let win1 = document.getElementById("win1")
-
-      modelHram.src = "files/3D_files/cerkov_na_bozhedomke.glb"
-      win1.style.display = "flex"
-      
-      document.getElementById('iframo-pedia').style.display = 'none';
+      showModel("files/3D_files/cerkov_na_bozhedomke.glb");
     }
-
-    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
-    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
     function showmodel3(){
-      let modelHram = document.getElementById("modelHram")
-      let win1 = document.getElementById("win1")
-
-      modelHram.src = "files/3D_files/uspenskiy_sobor.glb"
-      win1.style.display = "flex"
-      
-      document.getElementById('iframo-pedia').style.display = 'none';
+      showModel("files/3D_files/uspenskiy_sobor.glb");
     }
-
-    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
-    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
     function showmodel4(){
-      let modelHram = document.getElementById("modelHram")
-      let win1 = document.getElementById("win1")
-
-      modelHram.src = "files/3D_files/ilyinsko_tihonovskaya_cerkov.glb"
-      win1.style.display = "flex"
-      
-      document.getElementById('iframo-pedia').style.display = 'none';
+      showModel("files/3D_files/ilyinsko_tihonovskaya_cerkov.glb");
     }
-
-    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
-    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
     function showmodel5(){
-      let modelHram = document.getElementById("modelHram")
-      let win1 = document.getElementById("win1")
-
-      modelHram.src = "files/3D_files/mitropolichyi_palati.glb"
-      win1.style.display = "flex"
-      
-      document.getElementById('iframo-pedia').style.display = 'none';
+      showModel("files/3D_files/mitropolichyi_palati.glb");
     }
-    
-    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
-    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
     function showmodel6(){
-      let modelHram = document.getElementById("modelHram")
-      let win1 = document.getElementById("win1")
-
-      modelHram.src = "files/3D_files/cerkov_simeona_stolpnica.glb"
-      win1.style.display = "flex"
-      
-      document.getElementById('iframo-pedia').style.display = 'none';
+      showModel("files/3D_files/cerkov_simeona_stolpnica.glb");
     }
-    
-    //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на другую модель.
-    //Делает видимым модальное окно win1 с контентом по меткам на карте и запрещает отображение iframo-pedia.
     function showmodel7(){
-      let modelHram = document.getElementById("modelHram")
-      let win1 = document.getElementById("win1")
-
-      modelHram.src = "files/3D_files/cerkov_nicoli_nadeina.glb"
-      win1.style.display = "flex"
-      
-      document.getElementById('iframo-pedia').style.display = 'none';
+      showModel("files/3D_files/cerkov_nicoli_nadeina.glb");
+    }
+    function showmodel8(){
+      showModel("files/3D_files/cerkov_dmitrya_solunskogo.glb");
     }
 
 
@@ -286,61 +222,44 @@
     const hram6 = xy(932.5, 95.5);//Маркер используется <<Кафедральный Успенский собор>>
     const hram7 = xy(940.0, 165.0);//Маркер используется <<Ильинско-Тихоновская церковь>>
     const hram8 = xy(735.5, 554.0);//Маркер используется <<Церковь Симеона Столпника>>
-    const hram9 = xy(868.0, 360.0);//Маркер используется <<>>
+    const hram9 = xy(868.0, 360.0);//Маркер используется <<Церковь Николы Надеина>>
+    const hram10 = xy(593.0, 158.0);//Маркер используется <<Церковь Дмитрия Солунского>>
     const building1 = xy(942.5, 128.0);//Маркер используется <<Архиерейский дом (бывш. метрополичьи палаты)>>
-        
+    
+    
+    function createMarker(object, icon, name, infoButtonAction, modelButtonAction, additionalInfo = '') {
+        const popupContent = `
+            ${name} <br><br>
+            <p style="text-align: center;">
+                <button onclick="${modelButtonAction}">3D</button>
+                ${infoButtonAction ? `<button onclick="${infoButtonAction}">Информация</button>` : ''}
+            </p>`;
 
+        L.marker(object, { icon }).addTo(map)
+            .bindPopup(popupContent)
+            .on('click', function() {
+                document.getElementById("myHeading").innerHTML = name;
+            });
+        }
+    
     //(№1) модель
-    const mDLP = L.marker(hram6,{icon: customIcon}).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br>
-        <p style="text-align: center;">
-            <button onclick="showmodel3()">3D</button>
-        </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор";});
-        
+    createMarker(hram6, customIcon, "Кафедральный Успенский собор", null, "showmodel3()");
     //(№2) модель + информация
-    const mMizar = L.marker(hram2,{icon: customIcon}).addTo(map).bindPopup(`Церковь Николы Рубленого <br><br>
-        <p style="text-align: center;">
-            <button onclick="showmodel1()">3D</button>
-            <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/The Church of St. Nicholas the Chopped.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>
-        </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Николая Чудотворца";});
-
+    createMarker(hram2, customIcon, "Церковь Николы Рубленого", "showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/The Church of St. Nicholas the Chopped.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;", "showmodel1()");
     //(№4) модель + информация
-    const mDUK = L.marker(hram7,{icon: customIcon}).addTo(map).bindPopup(`Ильинско-Тихоновская церковь <br><br>
-        <p style="text-align: center;">
-            <button onclick="showmodel4()">3D</button>
-            <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Ilyinsko - Tikhonovskaya Church.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>
-        </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Ильинско-Тихоновская церковь";});
-        
+    createMarker(hram7, customIcon, "Ильинско-Тихоновская церковь", "showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Ilyinsko - Tikhonovskaya Church.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;", "showmodel4()");
     //(№5) модель
-    const mKruegerZ = L.marker(hram3,{icon: customIcon}).addTo(map).bindPopup(`Церковь Иоанна Златауста <br><br>
-        <p style="text-align: center;">
-            <button onclick="showmodel0()">3D</button>
-        </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Иоанна Златауста";});
-    
+    createMarker(hram3, customIcon, "Церковь Иоанна Златауста", null, "showmodel0()");
     //(№7) модель
-    const mQDFE = L.marker(building1,{icon: customIcon}).addTo(map).bindPopup(`Митрополичьи палаты <br><br>
-        <p style="text-align: center;">
-            <button onclick="showmodel5()">3D</button>
-        </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Архиерейский дом (бывш. метрополичьи палаты)";});
-    
+    createMarker(building1, customIcon, "Архиерейский дом (бывш. метрополичьи палаты)", null, "showmodel5()");
     //(№13) модель
-    const mQDwe = L.marker(hram9,{icon: customIcon}).addTo(map).bindPopup(`Церковь Николы Надеина <br><br>
-        <p style="text-align: center;">
-            <button onclick="showmodel7()">3D</button>
-        </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Николы Надеина";});
-        
+    createMarker(hram9, customIcon, "Церковь Николы Надеина", null, "showmodel7()");
     //(№68) панарама + информация
-    const mSol = L.marker(hram1,{icon: tours_360}).addTo(map).bindPopup(`Церковь Богоявления Господня <br><br> 
-        <p style="text-align: center;">
-            <button onclick="window.location.href = 'str/panarams/panorama_yar10.html';">360°</button>
-            <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church of the Epiphany.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>
-        </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Богоявления Господня";});
-    
+    createMarker(hram1, tours_360, "Церковь Богоявления Господня", "showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church of the Epiphany.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;", "window.location.href = 'str/panarams/panorama_yar10.html';");
     //(№70) модель + информация
-    const mQDFs = L.marker(hram8,{icon: customIcon}).addTo(map).bindPopup(`Церковь Симеона Столпника <br><br>
-        <p style="text-align: center;">
-            <button onclick="showmodel6()">3D</button>
-            <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/cerkov_simeona_stolpnica.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>
-        </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Симеона Столпника";});
+    createMarker(hram8, customIcon, "Церковь Симеона Столпника", "showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/cerkov_simeona_stolpnica.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;", "showmodel6()");
+     //(№83) модель
+    createMarker(hram10, customIcon, "Церковь Дмитрия Солунского", null, "showmodel8()");
         
     //(№84) модель + информация
     const mSCS = L.marker(hram5,{icon: customIcon}).addTo(map).bindPopup(`Церковь на Божедомке <br><br>
@@ -483,6 +402,16 @@ iframe.onload = function() {
           .bindPopup(`Церковь Симеона Столпника <br><br> <p style="text-align: center;"><button onclick="showmodel6()">3D</button><button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/cerkov_simeona_stolpnica.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button></p>`)
           .on('click', function() {
             document.getElementById("myHeading").innerHTML = "Церковь Симеона Столпника";
+          })
+          .openPopup();
+        markers.push(selectedMarker);
+    
+      } else if (selectedText === '83. Дмитрия Солунского') {
+        var selectedMarker = L.marker(hram10, { icon: customIcon_backlight })
+          .addTo(map)
+          .bindPopup(`Церковь Николы Надеина <br><br> <p style="text-align: center;"><button onclick="showmodel8()">3D</button></p>`)
+          .on('click', function() {
+            document.getElementById("myHeading").innerHTML = "Церковь Дмитрия Солунского";
           })
           .openPopup();
         markers.push(selectedMarker);
