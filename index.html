@@ -147,6 +147,9 @@
     function showmodel8(){
       showModel("files/3D_files/cerkov_dmitrya_solunskogo.glb");
     }
+    function showmodel9(){
+      showModel("files/3D_files/Annunciation_Church.glb");
+    }
 
 
 
@@ -224,6 +227,7 @@
     const hram8 = xy(735.5, 554.0);//Маркер используется <<Церковь Симеона Столпника>>
     const hram9 = xy(868.0, 360.0);//Маркер используется <<Церковь Николы Надеина>>
     const hram10 = xy(593.0, 158.0);//Маркер используется <<Церковь Дмитрия Солунского>>
+    const hram11 = xy(843.0, 597.0);//Маркер используется <<Благовещенская церковь>>
     const building1 = xy(942.5, 128.0);//Маркер используется <<Архиерейский дом (бывш. метрополичьи палаты)>>
     
     
@@ -258,29 +262,21 @@
     createMarker(hram1, tours_360, "Церковь Богоявления Господня", "showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church of the Epiphany.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;", "window.location.href = 'str/panarams/panorama_yar10.html';");
     //(№70) модель + информация
     createMarker(hram8, customIcon, "Церковь Симеона Столпника", "showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/cerkov_simeona_stolpnica.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;", "showmodel6()");
-     //(№83) модель
+    //(№71) модель
+    createMarker(hram11, customIcon, "Благовещенская церковь", null, "showmodel9()");
+    //(№83) модель
     createMarker(hram10, customIcon, "Церковь Дмитрия Солунского", null, "showmodel8()");
-        
     //(№84) модель + информация
-    const mSCS = L.marker(hram5,{icon: customIcon}).addTo(map).bindPopup(`Церковь на Божедомке <br><br>
-        <p style="text-align: center;">
-            <button onclick="showmodel2()">3D</button>
-            <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church on bozhedomka.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>
-        </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь на Божедомке";});
-        
-    // (№none) панарама
-    const mDeneb = L.marker(hram4,{icon: tours_360}).addTo(map).bindPopup(`Стрелка <br><br>
-        <p style="text-align: center;">
-            <button onclick="window.location.href = 'str/panarams/panorama_strelka.html';">360°</button>
-            <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Strelka.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>
-        </p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Ярославская Стрелка";});
+    createMarker(hram5, customIcon, "Церковь на Божедомке", "showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church on bozhedomka.html?timestamp=<%= DateTime.Now.Ticks %>'; return false", "showmodel2()");
+    //(№none) панарама + информация
+    createMarker(hram4, tours_360, "Стрелка", "showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Strelka.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;", "window.location.href = 'str/panarams/panorama_strelka.html';");
 
-        const closeBtn = document.querySelector('.close');
-      const modal = document.getElementById('win1');
-
-      closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-      });
+      const closeBtn = document.querySelector('.close');
+    const modal = document.getElementById('win1');
+    
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
 
 
 
@@ -302,133 +298,111 @@ document.addEventListener("click", function(event) {
 
 
 
-
-
 var iframe = document.getElementById('myFrame');
 
 iframe.onload = function() {
   var iframeContent = iframe.contentDocument || iframe.contentWindow.document;
-
   var markers = [];
-  var phones = [];
-
   var paragraphs = iframeContent.getElementsByTagName('a');
 
-  for (var i = 0; i < paragraphs.length; i++) {
-    paragraphs[i].addEventListener('click', function(event) {
-      // Сброс состояния для всех маркеров
-      for (var j = 0; j < markers.length; j++) {
-        markers[j].setIcon(customIcon);
-      }
-      for (var j = 0; j < phones.length; j++) {
-        phones[j].setIcon(tours_360);
-      }
+  var places = [
+    {
+      text: '1. Кафедральный Успенский собор',
+      location: hram6,
+      title: 'Кафедральный Успенский собор',
+      buttons: `<button onclick="showmodel3()">3D</button>`
+    },
+    {
+      text: '2. Церковь Николы Рубленого',
+      location: hram2,
+      title: 'Церковь Николы Рубленого',
+      buttons: `<button onclick="showmodel1()">3D</button>
+                <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/The Church of St. Nicholas the Chopped.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>`
+    },
+    {
+      text: '4. Ильинско-Тихоновская церковь',
+      location: hram7,
+      title: 'Ильинско-Тихоновская церковь',
+      buttons: `<button onclick="showmodel4()">3D</button>
+                <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Ilyinsko - Tikhonovskaya Church.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>`
+    },
+    {
+      text: '5. Церковь Иоанна Златауста',
+      location: hram3,
+      title: 'Церковь Иоанна Златауста',
+      buttons: `<button onclick="showmodel0()">3D</button>`
+    },
+    {
+      text: '7. Архиерейский  дом (бывш. метрополичьи палаты)',
+      location: building1,
+      title: 'Архиерейский  дом (бывш. метрополичьи палаты)',
+      buttons: `<button onclick="showmodel5()">3D</button>`
+    },
+    {
+      text: '13. Церковь Николы Надеина',
+      location: hram9,
+      title: 'Церковь Николы Надеина',
+      buttons: `<button onclick="showmodel7()">3D</button>`
+    },
+    {
+      text: '68. Церковь Богоявления Господня',
+      location: hram1,
+      title: 'Церковь Богоявления Господня',
+      buttons: `<button onclick="window.location.href = 'str/panorama_yar10.html';">360°</button>
+                <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church of the Epiphany.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>`
+    },
+    {
+      text: '70. Церковь Симеона Столпника',
+      location: hram8,
+      title: 'Церковь Симеона Столпника',
+      buttons: `<button onclick="showmodel6()">3D</button>
+                <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/cerkov_simeona_stolpnica.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>`
+    },
+    {
+      text: '71. Благовещенская церковь',
+      location: hram11,
+      title: 'Благовещенская церковь',
+      buttons: `<button onclick="showmodel9()">3D</button>`
+    },
+    {
+      text: '83. Дмитрия Солунского',
+      location: hram10,
+      title: 'Дмитрия Солунского',
+      buttons: `<button onclick="showmodel8()">3D</button>`
+    },
+    {
+      text: '84. Владимерская церковь (на Божедомке)',
+      location: hram5,
+      title: 'Владимерская церковь (на Божедомке)',
+      buttons: `<button onclick="showmodel2()">3D</button>
+                <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church on bozhedomka.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>`
+    }
+  ];
 
-      // Получаем текст нажатого элемента
+
+  var resetMarkers = function() {
+    markers.forEach(marker => marker.setIcon(customIcon));
+  };
+
+  Array.from(paragraphs).forEach(paragraph => {
+    paragraph.addEventListener('click', function(event) {
+      resetMarkers();
       var selectedText = event.target.textContent.trim();
+      var place = places.find(p => p.text === selectedText);
 
-      // Выполняем определенное действие на основе выбранного текста
-      
-      if (selectedText === '1. Кафедральный Успенский собор') {
-        var selectedMarker = L.marker(hram6, { icon: customIcon_backlight })
+      if (place) {
+        var selectedMarker = L.marker(place.location, { icon: customIcon_backlight })
           .addTo(map)
-          .bindPopup(`Кафедральный Успенский собор <br><br> <p style="text-align: center;"><button onclick="showmodel3()">3D</button></p>`)
+          .bindPopup(`${place.title}<br><br><p style="text-align: center;">${place.buttons}</p>`)
           .on('click', function() {
-            document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор";
+            document.getElementById("myHeading").innerHTML = place.title;
           })
           .openPopup();
+          
         markers.push(selectedMarker);
-        
-      } else if (selectedText === '2. Церковь Николы Рубленого') {
-        var selectedMarker = L.marker(hram2, { icon: customIcon_backlight })
-          .addTo(map)
-          .bindPopup(`Церковь Николы Рубленого <br><br> <p style="text-align: center;"><button onclick="showmodel1()">3D</button><button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/The Church of St. Nicholas the Chopped.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button></p>`)
-          .on('click', function() {
-            document.getElementById("myHeading").innerHTML = "Церковь Николая Чудотворца";
-          })
-          .openPopup();
-        markers.push(selectedMarker);
-        
-      } else if (selectedText === '4. Ильинско-Тихоновская церковь') {
-        var selectedMarker = L.marker(hram7, { icon: customIcon_backlight })
-          .addTo(map)
-          .bindPopup(`Ильинско-Тихоновская церковь <br><br> <p style="text-align: center;"><button onclick="showmodel4()">3D</button> <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Ilyinsko - Tikhonovskaya Church.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button></p>`)
-          .on('click', function() {
-            document.getElementById("myHeading").innerHTML = "Ильинско-Тихоновская церковь";
-          })
-          .openPopup();
-        markers.push(selectedMarker);
-        
-      } else if (selectedText === '5. Церковь Иоанна Златауста') {
-        var selectedMarker = L.marker(hram3, { icon: customIcon_backlight })
-          .addTo(map)
-          .bindPopup(`Церковь Иоанна Златауста <br><br> <p style="text-align: center;"><button onclick="showmodel0()">3D</button></p>`)
-          .on('click', function() {
-            document.getElementById("myHeading").innerHTML = "Церковь Иоанна Златауста";
-          })
-          .openPopup();
-        markers.push(selectedMarker);
-        
-      } else if (selectedText === '7. Архиерейский  дом (бывш. метрополичьи палаты)') {
-        var selectedMarker = L.marker(building1, { icon: customIcon_backlight })
-          .addTo(map)
-          .bindPopup(`Митрополичьи палаты <br><br> <p style="text-align: center;"><button onclick="showmodel5()">3D</button></p>`)
-          .on('click', function() {
-            document.getElementById("myHeading").innerHTML = "Архиерейский дом (бывш. метрополичьи палаты)";
-          })
-          .openPopup();
-        markers.push(selectedMarker);
-    
-      } else if (selectedText === '13. Церковь Николы Надеина') {
-        var selectedMarker = L.marker(hram9, { icon: customIcon_backlight })
-          .addTo(map)
-          .bindPopup(`Церковь Николы Надеина <br><br> <p style="text-align: center;"><button onclick="showmodel7()">3D</button></p>`)
-          .on('click', function() {
-            document.getElementById("myHeading").innerHTML = "Церковь Николы Надеина";
-          })
-          .openPopup();
-        markers.push(selectedMarker);
-      
-      } else if (selectedText === '68. Церковь Богоявления Господня') {
-        var selectedMarker = L.marker(hram1, { icon: tours_360_backlight })
-          .addTo(map)
-          .bindPopup(`Церковь Богоявления Господня <br><br> <p style="text-align: center;"><button onclick="window.location.href = 'str/panorama_yar10.html';">360°</button><button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church of the Epiphany.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button></p>`)
-          .openPopup();
-        phones.push(selectedMarker);
-    
-      } else if (selectedText === '70. Церковь Симеона Столпника') {
-        var selectedMarker = L.marker(hram8, { icon: customIcon_backlight })
-          .addTo(map)
-          .bindPopup(`Церковь Симеона Столпника <br><br> <p style="text-align: center;"><button onclick="showmodel6()">3D</button><button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/cerkov_simeona_stolpnica.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button></p>`)
-          .on('click', function() {
-            document.getElementById("myHeading").innerHTML = "Церковь Симеона Столпника";
-          })
-          .openPopup();
-        markers.push(selectedMarker);
-    
-      } else if (selectedText === '83. Дмитрия Солунского') {
-        var selectedMarker = L.marker(hram10, { icon: customIcon_backlight })
-          .addTo(map)
-          .bindPopup(`Церковь Николы Надеина <br><br> <p style="text-align: center;"><button onclick="showmodel8()">3D</button></p>`)
-          .on('click', function() {
-            document.getElementById("myHeading").innerHTML = "Церковь Дмитрия Солунского";
-          })
-          .openPopup();
-        markers.push(selectedMarker);
-        
-      } else if (selectedText === '84. Владимерская церковь (на Божедомке)') {
-        var selectedMarker = L.marker(hram5, { icon: customIcon_backlight })
-          .addTo(map)
-          .bindPopup(`Церковь на Божедомке <br><br> <p style="text-align: center;"><button onclick="showmodel2()">3D</button><button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church on bozhedomka.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button></p>`)
-          .on('click', function() {
-            document.getElementById("myHeading").innerHTML = "Церковь на Божедомке";
-          })
-          .openPopup();
-        markers.push(selectedMarker);
-        
       }
     });
-  }
+  });
 };
 </script>
 </body>
