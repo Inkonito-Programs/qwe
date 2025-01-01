@@ -1,262 +1,415 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <base target="_top">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Интернет музей г.Ярославль</title>
+    <title></title>
+    <link href="css/index.css" rel="stylesheet" type="text/css" media="screen" > <!--css страницы-->
+    <link rel="stylesheet" href="css/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/> <!--css для карты-->
+    <link rel="stylesheet" href="css/mobile_side_menu.css"> <!--Мобильное меню левое-->
+    <link href="css/vsplivaushee_okno.css" rel="stylesheet" type="text/css" media="screen" > <!--Всплывающее окно с контентом-->
+    <link href="css/snow.min.css" rel="stylesheet"> <!--Снег-->
 
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />                               <!--favicon-->
-  <link href="css/vsplivaushee_okno.css" rel="stylesheet" type="text/css" media="screen" >          <!--Всплывающее окно-->
-  <link href="css/vsplivaushee_bokovoe_okno.css" rel="stylesheet" type="text/css" media="screen" >  <!--Всплывающее боковое окно-->
-  <link href="css/index.css" rel="stylesheet" type="text/css" media="screen" >                      <!--css страницы-->
-  <link rel="stylesheet" href="css/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  
-  <script src="js/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="js/respond.min.js"></script>
-  <script type="module" src="js/model-viewer.min.js"></script>
-  
-</head>
-<body>
+    <script src="js/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script> <!--js для карты-->
+    <script src="js/respond.min.js"></script>
+    <script type="module" src="js/model-viewer.min.js"></script>
+    <script src="js/Snow.js"></script> <!--Снег-->
+  </head>
+  <body>
 
-  <div class="div-image"><div class='collor_white' style="background-color: white; height: 6.3vw; width: 16%; position: fixed; top: 1.4vw; left: 1.5%; border-radius: 10px;"><img class="logo-image" src="files/logo.png"></div><img class="old_gerb_image" src="files/gerb.png"><img class="nadpis_image" src="files/nadpis.png"></div>
-  <div style="height: 2%;"></div>
+    <!--Скрытый checkbox, отвечающий за переключение панели, должен быть в
+    верхней части документа, лучше сразу после тега `<body>`, `id` атрибут
+    предназначен для связки с атрибутом `for` тега <label> - кнопки вызова меню.
+    Атрибут `hidden` указывает состояние «скрытый» у текущего элемента-->
+    <input type="checkbox" id="nav-toggle" hidden>
 
-  <div class="curb">
-      <div class="curb_text"><p style="color: #F0FFFF; margin-left: 1vw;">Тел: <font color="#FFFFE0">8 (4852) 30-41-75 </font></p></div>
-      <div class="curb_text"><p style="color: #F0FFFF; position: fixed; right: 2vw;">Связь: <font color="#FFFFE0">ip-feedback@mail.ru</font></p></div>
-  </div>
+    <!--Верхнее мобильное меню-->
+    <div class="top_menu_mobail">
+      <div class="top_menu_div_with_mobail_logo">
+        <img src="files/logo.png" alt="">
+      </div>
+      <div class="top_menu_div_with_mobail_text">
+        <p align="center" >ДРЕВНИЙ ЯРОСЛАВЛЬ</p>
+      </div>
+    </div>
 
+    <!--Левое меню [mobail]-->
+    <nav class="nav">
+        <!--
+        Метка с именем `id` чекбокса в `for` атрибуте
+        Символ Unicode 'TRIGRAM FOR HEAVEN' (U+2630)
+        Пустой атрибут `onclick` используем для исправления бага в iOS < 6.0
+        См: http://timpietrusky.com/advanced-checkbox-hack
+        -->
+        <label for="nav-toggle" class="nav-toggle" onclick></label>
 
-  <div align="left" class="map" id='map'><a class="btn-modal" href="#modal-block">путеводитель</a></div>
+        <div class="nav_content">
+          <p align="center">ВАШ ПУТЕВОДИТЕЛЬ</p>
+          <iframe src="str/putevoditel.html"></iframe>
+        </div>
+    </nav>
 
-  <div class="dm-overlay" id="win1" style="margim: 0 auto;">
-    <div class="dm-table" id="dm-table">
-      <div class="dm-cell">
-        <div class="dm-modal" style="width: 90%; height:100%;">
-          <br><a href="#close" class="close"></a>
-          <h3 id="myHeading">Онлайн реконструкция</h3>
-          <div class="pl-left">
-          </div>
-          <div>
-            <model-viewer style="width: 100%; height: 70vh;" alt="" src="" ar shadow-intensity="1" camera-controls touch-action="pan-y" id="modelHram"></model-viewer>
+    <!--Левое меню [pc]-->
+    <div class="left_menu">
+      <!--Блок с логотипом-->
+      <div class="div_with_logo">
+        <img src="files/logo.png" alt="">
+      </div>
+
+      <!--Блок с путеводителем-->
+      <div class="div_with_travel_guide">
+        <!--Блок с наполнением-->
+        <div class="travel_guide_text">
+          <p align="center">ПУТЕВОДИТЕЛЬ</p>
+          <iframe id="myFrame" class="frame_bok_menu" src="str/putevoditel.html" style="width: 19vw; height: 53vh; border: none;"></iframe>
+        </div>
+      </div>
+
+      <!--Блок с информацией по сайту-->
+      <div class="div_with_info">
+        <!--Блок с наполнением-->
+        <div class="info_text">
+          <p align="center"><a id="notify-button" href="#">О САЙТЕ</a></p>
+          <hr>
+          <a href="https://www.youtube.com/watch?v=NkJiYg3LUw4&feature=youtu.be">ВИДЕО О КАРТЕ</a>
+        </div>
+      </div>
+    </div>
+
+    <!--Блок с картой-->
+    <div class="map" id='map'>
+      <div class="upper_curb_on_the_map">
+        <div class="block_with_content_text_on_the_map">
+          <div class="the_content_text_on_the_map">
+            <p align="center">ДРЕВНИЙ ЯРОСЛАВЛЬ</p>
+            <hr>
+            <p align="center" class="text2">ВТОРОЙ ПОЛОВИНЫ XVIII ВЕКА</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!--Боковое всплывающее окно (PC)-->
-  <div class="bokovoe_okno_pc">
-    <input type="checkbox" id="side-checkbox" />
-    <div class="side-panel">
-        <label class="side-button-2" for="side-checkbox">+</label>
-        <div class="side-title">Путеводитель по карте:</div>
-        <iframe id="myFrame" class="frame_bok_menu" src="str/petevoditel.html" frameBorder="0"></iframe>
-    </div>
-    <div class="side-button-1-wr">
-        <label class="side-button-1" for="side-checkbox">
-            <div class="side-b side-open">путеводитель</div>
-        </label>
-    </div>
-  </div>
+    <!--Модальное окно с 3D моделями--> <!--ПРОДОЛЖАЕМ РАЗРАБОТКУ С МОДАЛЬНОГО ОКНА. ПОКА ОНО ПРОСТО ПОДКЛЮЧЕНО ПО СТИЛЯМ CSS (В <head>) И РАЗМЕТКЕ-->
 
-  <!-- Модальное окно (phone)-->
-  <div class="bokovoe_okno_phone">
-    <!-- Содержимое модального окна -->
-    <div id="modal-block">
-      <h3>Путеводитель по карте</h3>
-      </br>
-      <a class="close-block" href="#close-block">X</a>
-      <iframe id="myFrame2" class="frame_bok_menu2" src="str/petevoditel.html" frameBorder="0"></iframe>
+    <div class="dm-overlay" id="win1" style="overflow-y: hidden; margin: 0 auto;">
+        <div class="dm-table" id="dm-table">
+          <div class="dm-cell">
+            <div class="dm-modal" style="width: 90%; height:100%;">
+              <br><a href="#close" class="close"></a>
+              <h3 id="myHeading">Онлайн реконструкция</h3>
+              <div class="pl-left">
+              </div>
+              <div style="position: relative;">
+                <model-viewer style="width: 100%; height: 70vh;" alt="" src="" ar shadow-intensity="1" camera-controls touch-action="pan-y" class='modelHram' id="modelHram"></model-viewer>
+                <iframe frameBorder="0" src='' class='iframo-pedia' id='iframo-pedia' style='width: 98%; height: 100%; position: absolute; top: 1em; left: 50%; transform: translateX(-50%);'></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
-  </div>
 
-<script>
-    function ToMakeWork(){
-        console.warn(`yar`)
+    <script>
+        // Получаем текущую дату
+        const currentDate = new Date();
+
+        // Получаем месяц (0 - январь, 1 - февраль, ..., 11 - декабрь)
+        const currentMonth = currentDate.getMonth();
+
+        // Проверяем, если текущий месяц - декабрь (11), январь (0) или февраль (1)
+        if (currentMonth === 11 || currentMonth === 0 || currentMonth === 1) {
+          // Запускаем снег
+          new Snow ();
         }
 
-    function showmodel0(){
-      let modelHram = document.getElementById("modelHram")
-      let win1 = document.getElementById("win1")
+        // Запускаем уведомление при нажатии на кнопку 'о сайте'
+        document.getElementById("notify-button").addEventListener("click", function() {
+            alert("Связь с разработчиком: ip-feedback@mail.ru \nТелефон музея: Тел: 8 (4852) 30-41-75");
+        });
 
-      modelHram.src = "files/3D_files/cerkov_ioanna_zlatausta.glb"
-      win1.style.display = "flex"
-    }
+        //Данная функция получает элементы по их id: modelHram, win1 и изменяет источник модели на указанный.
+        //Делает видимым модальное окно win1 с контентом по меткам на карте и отображает (true) или запрещает отображение (false) iframo-pedia.
+        function showModel(modelSrc, showIframopedia = false) {
+            let modelHram = document.getElementById("modelHram");
+            let win1 = document.getElementById("win1");
 
-    function showmodel1(){
-      let modelHram = document.getElementById("modelHram")
-      let win1 = document.getElementById("win1")
+            modelHram.src = modelSrc;
+            win1.style.display = "flex";
 
-      modelHram.src = "files/3D_files/cerkov_nikolaya_chudotvorca.glb"
-      win1.style.display = "flex"
-    }
+            document.getElementById('iframo-pedia').style.display = showIframopedia ? 'block' : 'none';
+        }
 
-    function showmodel2(){
-      let modelHram = document.getElementById("modelHram")
-      let win1 = document.getElementById("win1")
-
-      modelHram.src = "files/3D_files/cerkov_na_bozhedomke.glb"
-      win1.style.display = "flex"
-    }
-
-    function showmodel3(){
-      let modelHram = document.getElementById("modelHram")
-      let win1 = document.getElementById("win1")
-
-      modelHram.src = "files/3D_files/uspenskiy_sobor.glb"
-      win1.style.display = "flex"
-    }
-    function showmodel4(){
-      let modelHram = document.getElementById("modelHram")
-      let win1 = document.getElementById("win1")
-
-      modelHram.src = "files/3D_files/ilyinsko_tihonovskaya_cerkov.glb"
-      win1.style.display = "flex"
-    }
-
-
-
-    const map = L.map('map', {
-      crs: L.CRS.Simple,
-      minZoom: -1,
-      maxZoom: 4
-    });
-
-    const yx = L.latLng;
-
-    function xy(x, y) {
-      if (Array.isArray(x)) {
-        return yx(x[1], x[0]);
-      }
-      return yx(y, x);
-    }
-
-    const bounds = [xy(0, 0), xy(1000, 1000)]; // Replace these coordinates with your map bounds
-    const image = L.imageOverlay('files/maps/old_Yaroslavl.jpg', bounds).addTo(map);
-
-    const topLeft = xy(0, 0); // Define top-left corner coordinates
-    const bottomRight = xy(1000, 1000); // Define bottom-right corner coordinates
-    const boundsLatLng = L.latLngBounds(topLeft, bottomRight);
-    map.setMaxBounds(boundsLatLng);
-
-    map.setView(xy(500, 500), 0); // Set initial view center and zoom level
-
-    const customIcon = L.icon({
-      iconUrl: 'files/other/3d-cube.png',
-      iconSize: [30, 45],
-      iconAnchor: [15, 25],
-    });
-    
-    const customIcon_backlight = L.icon({
-      iconUrl: 'files/other/3d-cube_backlight.png',
-      iconSize: [30, 45],
-      iconAnchor: [15, 25],
-    });
-
-    const tours_360 = L.icon({
-      iconUrl: 'files/other/360-view.png',
-      iconSize: [45, 45],
-      iconAnchor: [25, 25],
-    });
-    
-    const tours_360_backlight = L.icon({
-      iconUrl: 'files/other/360-view_backlight.png',
-      iconSize: [45, 45],
-      iconAnchor: [25, 25],
-    });
+        //Данные функции при вызове вызывают функцию showModel() и передают в нее источник нужной нам 3D модели и параметр showIframopedia принимающий значение true или false
+        function showmodelNone() {
+            showModel("files/3D_files/none.glb", true);
+        }
+        function showmodel0(){
+          showModel("files/3D_files/cerkov_ioanna_zlatausta.glb");
+        }
+        function showmodel1(){
+          showModel("files/3D_files/cerkov_nikolaya_chudotvorca.glb");
+        }
+        function showmodel2(){
+          showModel("files/3D_files/cerkov_na_bozhedomke.glb");
+        }
+        function showmodel3(){
+          showModel("files/3D_files/uspenskiy_sobor.glb");
+        }
+        function showmodel4(){
+          showModel("files/3D_files/ilyinsko_tihonovskaya_cerkov.glb");
+        }
+        function showmodel5(){
+          showModel("files/3D_files/mitropolichyi_palati.glb");
+        }
+        function showmodel6(){
+          showModel("files/3D_files/cerkov_simeona_stolpnica.glb");
+        }
+        function showmodel7(){
+          showModel("files/3D_files/cerkov_nicoli_nadeina.glb");
+        }
+        function showmodel8(){
+          showModel("files/3D_files/cerkov_dmitrya_solunskogo.glb");
+        }
+        function showmodel9(){
+          showModel("files/3D_files/Annunciation_Church.glb");
+        }
 
 
-    const hram1 = xy(685.0, 130.0);//Маркер используется <<Церковь Богоявления Господня 360>>
-    const hram2 = xy(872.0, 110.0);//Маркер используется <<Церковь Николая Чудотворца 3D>>
-    const hram3 = xy(928.0, 130.0);//Маркер используется <<Церковь Иоанна Златауста 3D>>
-    const hram4 = xy(955.0, 46.5);//Маркер используется <<Стрелка 3D>>
-    const hram5 = xy(141.0, 430.5);//Маркер используется <<Храм на Божедомке>>
-    const hram6 = xy(932.5, 95.5);//Маркер используется <<Кафедральный Успенский собор>>
-    const hram7 = xy(940.0, 165.0);//Маркер используется <<Ильинско-Тихоновская церковь>>
 
-    //68 панарама
-    const mSol = L.marker(hram1,{icon: tours_360}).addTo(map).bindPopup(`Церковь Богоявления Господня <br><br> <button onclick="window.location.href = 'str/panorama_yar10.html';">360°</button>`);
-    //2 модель
-    const mMizar = L.marker(hram2,{icon: customIcon}).addTo(map).bindPopup(`Церковь Николая Чудотворца <br><br> <p style="text-align: center;"><button onclick="showmodel1()">3D</button></p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Николая Чудотворца";});
-    //5 модель
-    const mKruegerZ = L.marker(hram3,{icon: customIcon}).addTo(map).bindPopup(`Церковь Иоанна Златауста <br><br> <p style="text-align: center;"><button onclick="showmodel0()">3D</button></p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Иоанна Златауста";});
-    // none
-    const mDeneb = L.marker(hram4,{icon: tours_360}).addTo(map).bindPopup(`Стрелка <br><br> <button onclick="window.location.href = 'str/panorama_strelka.html';">360°</button>`);
-    //84 модель
-    const mSCS = L.marker(hram5,{icon: customIcon}).addTo(map).bindPopup(`Церковь на Божедомке <br><br> <p style="text-align: center;"><button onclick="showmodel2()">3D</button></p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь на Божедомке";});
-    //1 модель
-    const mDLP = L.marker(hram6,{icon: customIcon}).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br> <p style="text-align: center;"><button onclick="showmodel3()">3D</button></p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор";});
-    //4 модель
-    const mDUK = L.marker(hram7,{icon: customIcon}).addTo(map).bindPopup(`Ильинско-Тихоновская церковь <br><br> <p style="text-align: center;"><button onclick="showmodel4()">3D</button></p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Ильинско-Тихоновская церковь";});
+        // Создаем карту и привязываем ее к элементу на сайте с id map (в нашем случае <div>)
+        const map = L.map('map', {
+          crs: L.CRS.Simple,
+          minZoom: -1,
+          maxZoom: 4
+        });
+
+        // Обработка координат карты
+        const yx = L.latLng;
+
+        function xy(x, y) {
+          if (Array.isArray(x)) {
+            return yx(x[1], x[0]);
+          }
+          return yx(y, x);
+        }
+
+        // Здесь создается массив, который определяет границы (или пределы) для наложенного изображения на карту.
+        // Эти вызовы функции xy создают координаты для верхнего левого (0, 0) и нижнего правого (1000, 1000) углов карты.
+        // Так как мы работаем с простой системой координат, эти координаты будут использоваться для привязки изображения к карте.
+        const bounds = [xy(0, 0), xy(1000, 1000)];
+
+        // Наложение изображения
+        const image = L.imageOverlay('files/maps/old_Yaroslavl.webp', bounds).addTo(map);
+
+        // Определение углов карты
+        // Здесь снова создаются координаты для углов карты, используя функцию xy.
+        // Угол верхнего левого соответствует координатам (0, 0), а нижнего правого — (1000, 1000).
+        // Эти координаты будут использоваться для определения видимых границ карты.
+        const topLeft = xy(0, 0);
+        const bottomRight = xy(1000, 1000);
+
+        // Максимальные границы карты
+        const boundsLatLng = L.latLngBounds(topLeft, bottomRight);
+        map.setMaxBounds(boundsLatLng);
+
+        //
+        map.setView(xy(500, 500), -1); // Set initial view center and zoom level
+
+        const customIcon = L.icon({
+          iconUrl: 'files/other/3d-cube.png',
+          iconSize: [30, 45],
+          iconAnchor: [15, 25],
+        });
+
+        const customIcon_backlight = L.icon({
+          iconUrl: 'files/other/3d-cube_backlight.png',
+          iconSize: [30, 45],
+          iconAnchor: [15, 25],
+        });
+
+        const tours_360 = L.icon({
+          iconUrl: 'files/other/360-view.png',
+          iconSize: [45, 45],
+          iconAnchor: [25, 25],
+        });
+
+        const tours_360_backlight = L.icon({
+          iconUrl: 'files/other/360-view_backlight.png',
+          iconSize: [45, 45],
+          iconAnchor: [25, 25],
+        });
 
 
-        const closeBtn = document.querySelector('.close');
-      const modal = document.getElementById('win1');
+        const hram1 = xy(685.0, 130.0);//Маркер используется <<Церковь Богоявления Господня 360>>
+        const hram2 = xy(872.0, 110.0);//Маркер используется <<Церковь Николая Чудотворца 3D>>
+        const hram3 = xy(928.0, 130.0);//Маркер используется <<Церковь Иоанна Златауста 3D>>
+        const hram4 = xy(955.0, 46.5);//Маркер используется <<Стрелка 3D>>
+        const hram5 = xy(141.0, 430.5);//Маркер используется <<Храм на Божедомке>>
+        const hram6 = xy(932.5, 95.5);//Маркер используется <<Кафедральный Успенский собор>>
+        const hram7 = xy(940.0, 165.0);//Маркер используется <<Ильинско-Тихоновская церковь>>
+        const hram8 = xy(735.5, 554.0);//Маркер используется <<Церковь Симеона Столпника>>
+        const hram9 = xy(868.0, 360.0);//Маркер используется <<Церковь Николы Надеина>>
+        const hram10 = xy(593.0, 158.0);//Маркер используется <<Церковь Дмитрия Солунского>>
+        const hram11 = xy(843.0, 597.0);//Маркер используется <<Благовещенская церковь>>
+        const building1 = xy(942.5, 128.0);//Маркер используется <<Архиерейский дом (бывш. метрополичьи палаты)>>
 
-      closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-      });
-      
-    
-    
-    
-    // Получаем доступ к iframe и меняем иконку определенного объекта по нажатию на его название в путеводителе
+
+        function createMarker(object, icon, name, infoButtonAction, modelButtonAction, additionalInfo = '') {
+            const buttonLabel = icon === tours_360 ? '360' : '3D'; // Проверка значения icon
+            const popupContent =
+                `${name} <br><br>
+                <p style="text-align: center;">
+                    <button onclick="${modelButtonAction}">${buttonLabel}</button>
+                    ${infoButtonAction ? `<button onclick="${infoButtonAction}">Информация</button>` : ''}
+                </p>`;
+
+            L.marker(object, { icon }).addTo(map)
+                .bindPopup(popupContent)
+                .on('click', function() {
+                    document.getElementById("myHeading").innerHTML = name;
+                });
+        }
+
+
+        //(№1) модель
+        createMarker(hram6, customIcon, "Кафедральный Успенский собор", null, "showmodel3()");
+        //(№2) модель + информация
+        createMarker(hram2, customIcon, "Церковь Николы Рубленого", "showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/The Church of St. Nicholas the Chopped.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;", "showmodel1()");
+        //(№4) модель + информация
+        createMarker(hram7, customIcon, "Ильинско-Тихоновская церковь", "showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Ilyinsko - Tikhonovskaya Church.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;", "showmodel4()");
+        //(№5) модель
+        createMarker(hram3, customIcon, "Церковь Иоанна Златауста", null, "showmodel0()");
+        //(№7) модель
+        createMarker(building1, customIcon, "Архиерейский дом (бывш. метрополичьи палаты)", null, "showmodel5()");
+        //(№13) модель
+        createMarker(hram9, customIcon, "Церковь Николы Надеина", null, "showmodel7()");
+        //(№68) панарама + информация
+        createMarker(hram1, tours_360, "Церковь Богоявления Господня", "showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church of the Epiphany.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;", "window.location.href = 'str/panarams/panorama_yar10.html';");
+        //(№70) модель + информация
+        createMarker(hram8, customIcon, "Церковь Симеона Столпника", "showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/cerkov_simeona_stolpnica.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;", "showmodel6()");
+        //(№71) модель
+        createMarker(hram11, customIcon, "Благовещенская церковь", null, "showmodel9()");
+        //(№83) модель
+        createMarker(hram10, customIcon, "Церковь Дмитрия Солунского", null, "showmodel8()");
+        //(№84) модель + информация
+        createMarker(hram5, customIcon, "Церковь на Божедомке", "showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church on bozhedomka.html?timestamp=<%= DateTime.Now.Ticks %>'; return false", "showmodel2()");
+        //(№none) панарама + информация
+        createMarker(hram4, tours_360, "Стрелка", "showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Strelka.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;", "window.location.href = 'str/panarams/panorama_strelka.html';");
+
+          const closeBtn = document.querySelector('.close');
+        const modal = document.getElementById('win1');
+
+        closeBtn.addEventListener('click', () => {
+          modal.style.display = 'none';
+        });
+
+
     var iframe = document.getElementById('myFrame');
-    
-    // Проверяем, что iframe успешно загружен
+
     iframe.onload = function() {
-      // Получаем доступ к содержимому iframe
       var iframeContent = iframe.contentDocument || iframe.contentWindow.document;
-    
-      // Получаем все элементы <p> с текстом внутри iframe
-      var paragraphs = iframeContent.getElementsByTagName('p');
-    
-      // Добавляем обработчик событий для каждого элемента <p>
-      for (var i = 0; i < paragraphs.length; i++) {
-        paragraphs[i].addEventListener('click', function(event) {
-          // Получаем текст нажатого элемента
+      var markers = [];
+      var paragraphs = iframeContent.getElementsByTagName('a');
+
+      var places = [
+        {
+          text: '1. Кафедральный Успенский собор',
+          location: hram6,
+          title: 'Кафедральный Успенский собор',
+          buttons: `<button onclick="showmodel3()">3D</button>`
+        },
+        {
+          text: '2. Церковь Николы Рубленого',
+          location: hram2,
+          title: 'Церковь Николы Рубленого',
+          buttons: `<button onclick="showmodel1()">3D</button>
+                    <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/The Church of St. Nicholas the Chopped.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>`
+        },
+        {
+          text: '4. Ильинско-Тихоновская церковь',
+          location: hram7,
+          title: 'Ильинско-Тихоновская церковь',
+          buttons: `<button onclick="showmodel4()">3D</button>
+                    <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Ilyinsko - Tikhonovskaya Church.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>`
+        },
+        {
+          text: '5. Церковь Иоанна Златауста',
+          location: hram3,
+          title: 'Церковь Иоанна Златауста',
+          buttons: `<button onclick="showmodel0()">3D</button>`
+        },
+        {
+          text: '7. Архиерейский  дом (бывш. метрополичьи палаты)',
+          location: building1,
+          title: 'Архиерейский  дом (бывш. метрополичьи палаты)',
+          buttons: `<button onclick="showmodel5()">3D</button>`
+        },
+        {
+          text: '13. Церковь Николы Надеина',
+          location: hram9,
+          title: 'Церковь Николы Надеина',
+          buttons: `<button onclick="showmodel7()">3D</button>`
+        },
+        {
+          text: '68. Церковь Богоявления Господня',
+          location: hram1,
+          title: 'Церковь Богоявления Господня',
+          buttons: `<button onclick="window.location.href = 'str/panarams/panorama_yar10.html';">360°</button>
+                    <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church of the Epiphany.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>`
+        },
+        {
+          text: '70. Церковь Симеона Столпника',
+          location: hram8,
+          title: 'Церковь Симеона Столпника',
+          buttons: `<button onclick="showmodel6()">3D</button>
+                    <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/cerkov_simeona_stolpnica.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>`
+        },
+        {
+          text: '71. Благовещенская церковь',
+          location: hram11,
+          title: 'Благовещенская церковь',
+          buttons: `<button onclick="showmodel9()">3D</button>`
+        },
+        {
+          text: '83. Дмитрия Солунского',
+          location: hram10,
+          title: 'Дмитрия Солунского',
+          buttons: `<button onclick="showmodel8()">3D</button>`
+        },
+        {
+          text: '84. Владимерская церковь (на Божедомке)',
+          location: hram5,
+          title: 'Владимерская церковь (на Божедомке)',
+          buttons: `<button onclick="showmodel2()">3D</button>
+                    <button onclick="showmodelNone(); document.querySelector('#iframo-pedia').src = 'str/iframo-pedia/Church on bozhedomka.html?timestamp=<%= DateTime.Now.Ticks %>'; return false;">Информация</button>`
+        }
+      ];
+
+
+      var resetMarkers = function() {
+        markers.forEach(marker => marker.setIcon(customIcon));
+      };
+
+      Array.from(paragraphs).forEach(paragraph => {
+        paragraph.addEventListener('click', function(event) {
+          resetMarkers();
           var selectedText = event.target.textContent.trim();
-          
-          // Выполняем определенное действие на основе выбранного текста
-          if (selectedText === '68. Церковь Богоявления Господня') {
-            const mSol = L.marker(hram1,{icon: tours_360_backlight}).addTo(map).bindPopup(`Церковь Богоявления Господня <br><br> <button onclick="window.location.href = 'str/panorama_yar10.html';">360°</button>`);
-          
-          } else if (selectedText === '1. Кафедральный Успенский собор') {
-            const mDLP = L.marker(hram6,{icon: customIcon_backlight}).addTo(map).bindPopup(`Кафедральный Успенский собор <br><br> <p style="text-align: center;"><button onclick="showmodel3()">3D</button></p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Кафедральный Успенский собор";});
-          
-          } else if (selectedText === '2. Церковь Николы Рубленого') {
-            const mMizar = L.marker(hram2,{icon: customIcon_backlight}).addTo(map).bindPopup(`Церковь Николая Чудотворца <br><br> <p style="text-align: center;"><button onclick="showmodel1()">3D</button></p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Николая Чудотворца";});
-            
-          } else if (selectedText === '4. Ильинско-Тихоновская церковь') {
-            const mDUK = L.marker(hram7,{icon: customIcon_backlight}).addTo(map).bindPopup(`Ильинско-Тихоновская церковь <br><br> <p style="text-align: center;"><button onclick="showmodel4()">3D</button></p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Ильинско-Тихоновская церковь";});
-            
-          } else if (selectedText === '5. Церковь Иоанна Златауста') {
-            const mKruegerZ = L.marker(hram3,{icon: customIcon_backlight}).addTo(map).bindPopup(`Церковь Иоанна Златауста <br><br> <p style="text-align: center;"><button onclick="showmodel0()">3D</button></p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь Иоанна Златауста";});
-            
-          } else if (selectedText === '84. Владимерская церковь (на Божедомке)') {
-            const mSCS = L.marker(hram5,{icon: customIcon_backlight}).addTo(map).bindPopup(`Церковь на Божедомке <br><br> <p style="text-align: center;"><button onclick="showmodel2()">3D</button></p>`).on('click', function() {document.getElementById("myHeading").innerHTML = "Церковь на Божедомке";});
-            
-          } else {
-            // Действие по умолчанию
-            console.log('Вы нажали на другое слово в iframe!');
+          var place = places.find(p => p.text === selectedText);
+
+          if (place) {
+            var selectedMarker = L.marker(place.location, { icon: customIcon_backlight })
+              .addTo(map)
+              .bindPopup(`${place.title}<br><br><p style="text-align: center;">${place.buttons}</p>`)
+              .on('click', function() {
+                document.getElementById("myHeading").innerHTML = place.title;
+              })
+              .openPopup();
+
+            markers.push(selectedMarker);
           }
         });
-      }
+      });
     };
-
-</script>
-
-
-
-<style>
-.leaflet-container {
-    background: #fff;
-    outline: 0;
-}
-</style>
-
-</body>
+    </script>
+  </body>
 </html>

@@ -1,132 +1,238 @@
-.leaflet-container {
-      height: 100%;
-      width: 100%;
-      max-width: 100%;
-      max-height: 100%;
+/*Нужно для мобильного левого меню*/
+* {
+    box-sizing: border-box;
 }
+
+html, body {
+       height: 100%; /* Это для полной высоты окна браузера */
+       width: 100%;
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box; /* Позволяет корректно рассчитывать ширину и высоту элементов */
+}
+
 .leaflet-bottom.leaflet-right{
   visibility: hidden;
 }
-a, u {
-  text-decoration: none;
+.leaflet-control-zoom.leaflet-bar.leaflet-control{
+  display: none;
 }
-    
-@media screen and (max-width: 1024px){
-    html, body {
-          height: 100%;
-          margin: 0;
-          background: url(../files/fon.webp) no-repeat center center fixed;/*Растягиваем фоновую картинку на весь экран (адаптация)*/
-           -webkit-background-size: cover;
-           -moz-background-size: cover;
-           -o-background-size: cover;
-           background-size: cover;
-    }
-    .div-image{
-        height: 25%;
-    }
-    .collor_white{
-        display: none;
-    }
-    .logo-image{
-        width: 50%;
-        position: fixed;
-        top: 1.5vw;
-        left: 26%;
-        display: none; 
-        }
-    .old_gerb_image{
-        width: 20%;
-        position: fixed;
-        top: 0.6vw;
-        left: 2%;
-        display: none;  
-    }
-    .nadpis_image{
-        width: 95%;
-        position: fixed;
-        top: 0.6vw;
-        left: 2.4%;
-    }
-    #map{
-	position: relative;
-        width: 90%;
-        height: 70%;
-        margin: 0 auto;
-        border-radius: 30px;
-        border: 3.5mm ridge rgba(143, 188, 143);
-        box-shadow:
-            0 0 25px 5px #FFEFD5; /* outer cyan */
-    }
-    .curb{
-        display: none;   
-    }
+
+/* Убираем подчеркивание у всех ссылок */
+a {
+    text-decoration: none;
 }
-    
+
 /*Для экранов размером больше 1024 пикселей*/
 @media screen and (min-width: 1024px){
-    html, body {
-     overflow: hidden;
-     height: 100%;
-     margin: 0;
-     background: url(../files/fon-forPC.jpg) no-repeat center center fixed;/*Растягиваем фоновую картинку на весь экран (адаптация)*/
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-        }
-    .div-image{
-        height: 10.5vw;
-        margin: 0 auto;
-        /*backdrop-filter: blur(3px);*/
-        box-shadow: inset 0 0 2000px rgba(241, 241, 241, 0.5);
-        backdrop-filter: blur(3px);
-    }
-    .logo-image{
-        width: 15%;
-        position: fixed;
-        top: 1.5vw;
-        left: 2%;
-        /*border: 0.4mm ridge rgba(165, 42, 42);*/
-        border-radius: 5px;
-    }
-    .old_gerb_image{
-        width: 7%;
-        position: fixed;
-        top: 2vw;
-        left: 25%;
-    }
-    .nadpis_image{
-        width: 35%;
-        position: fixed;
-        top: 0.8vw;
-        left: 32%;
-    }
-    #map{
-        width: 60%;
-        height: 70%;
-        margin: 0 auto;
-        border-radius: 30px;
-        border: 3.5mm ridge rgba(143, 188, 143);
-        box-shadow:
-            0 0 25px 5px #FFEFD5; /* outer cyan */
-    }
-    div.curb{
-        width: 100%;
-        height: 5%;
-        position: fixed;
-        bottom: 0px;
-        background-color: DarkCyan;
-        transform: translateY(-3px);
-        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
-        
-        display: flex;
-        justify-content: left;
-        align-items: left;
-    }
-    .curb_text{
-        
-        margin-right: 10px; /* Сдвиг на 10px вверх */
-        
-    }
+  /*Левое мобильное меню*/
+  .nav{
+    display: none;
+  }
 
+  .top_menu_mobail{
+    display: none;
+  }
+
+  /*Левое меню [пк версия]*/
+  .left_menu{
+    float: left;
+    width: 20%;
+    height: 100%;
+    box-shadow: 0 0 15px 7px rgba(0,0,0,0.6);
+    position: relative; /* Позволяет применять z-index */
+    z-index: 401; /* Устанавливаем z-index для перекрытия других элементов */
+  }
+
+  /*Блок с логотипом*/
+  .div_with_logo{
+    width: 100%;
+    height: 20%;
+    background-color: #FFFFFF;
+    box-shadow: 0 5px 10px 0px rgba(0,0,0,0.6);
+    position: relative; /* Позволяет применять z-index */
+    z-index: 401; /* Устанавливаем z-index для перекрытия других элементов */
+
+    /*Нужно для центрирования содержимого данного блока*/
+    display: flex;
+    align-items: center; /* Центрирует содержимое по оси Y */
+  }
+  /*Логотип*/
+  .div_with_logo img{
+    width: 75%;
+    margin-left: 0.5vw; /* Отступ слева */
+  }
+
+  /*Блок с путеводителем*/
+  .div_with_travel_guide{
+    width: 100%;
+    height: 65%;
+    background-color: #FFFFFF;
+
+    /*Нужно для центрирования содержимого данного блока*/
+    display: flex; /* Активируем Flexbox */
+    justify-content: center; /* Центрируем по оси X */
+    align-items: center; /* Центрируем по оси Y */
+  }
+  /*Блок с наполнением*/
+  .div_with_travel_guide .travel_guide_text p{
+    color: #9c242e;
+    font-size: 3vh;
+  }
+
+  /*Блок с информацией по сайту*/
+  .div_with_info{
+    width: 100%;
+    height: 15%;
+    background-color: #FFFFFF;
+    box-shadow: 0 -5px 5px -1px rgba(0,0,0,0.5);
+    position: relative; /* Позволяет применять z-index */
+    z-index: 401; /* Устанавливаем z-index для перекрытия других элементов */
+
+    /*Нужно для центрирования содержимого данного блока*/
+    display: flex; /* Активируем Flexbox */
+    justify-content: center; /* Центрируем по оси X */
+    align-items: center; /* Центрируем по оси Y */
+  }
+  /*Блок с наполнением*/
+  .div_with_info .info_text a, p {
+    color: #9c242e;
+    font-size: 3vh;
+    margin: 5px 0; /* Уменьшаем отступы сверху и снизу до 5px */
+  }
+
+  /*Блок с картой*/
+  .map{
+      width: 80%;
+      height: 100%;
+  }
+
+  /*Блок с надписями на карте*/
+  .upper_curb_on_the_map{
+    width: 100%;
+    height: 15%;
+    background: rgba(255, 255, 255, 0.1); /* Полупрозрачный фон */
+    position: relative; /* Позволяет применять z-index */
+    z-index: 401; /* Устанавливаем z-index для перекрытия других элементов */
+
+    /*Нужно для центрирования содержимого данного блока*/
+    display: flex; /* Используем Flexbox */
+    justify-content: center; /* Центрируем по оси X */
+    align-items: center; /* Центрируем по оси Y */
+  }
+  /*Параметры обоих надписей в блоке*/
+  .upper_curb_on_the_map p{
+    font-size: 3vw;
+    margin: -10px auto; /* Уменьшаем отступы сверху и снизу до 5px */
+    font-family: OldStyle;
+    color: #525252;
+  }
+  .upper_curb_on_the_map .text2{
+    font-size: 2vw;
+  }
+
+  .the_content_text_on_the_map{
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+/*Для экранов размером меньше 1024 пикселей*/
+@media screen and (max-width: 1024px){
+  /*Левое меню [пк версия]*/
+  .left_menu{
+    display: none;
+  }
+
+  /*Блок с надписями на карте*/
+  .upper_curb_on_the_map{
+    display: none;
+  }
+
+  .top_menu_mobail{
+    width: 100%;
+    height: 15%;
+    box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.6);
+    background: rgba(255, 255, 255, 0.1); /* Полупрозрачный фон */
+
+    position: absolute; /* Позволяет применять z-index */
+    z-index: 401; /* Устанавливаем z-index для перекрытия других элементов */
+
+    display: flex;            /* Включаем flex-контейнер */
+  }
+  .top_menu_div_with_mobail_logo{
+    float: left;
+    height: 100%;
+
+    display: flex;            /* Включаем flex-контейнер */
+    align-items: center;  /* Центрируем по оси Y */
+    justify-content: center; /* Центрируем по оси X */
+  }
+  .top_menu_div_with_mobail_logo img{
+    height: 80%;
+
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .top_menu_div_with_mobail_text{
+    float: right;
+    height: 100%;
+
+    display: flex;
+    align-items: center; /* Центрируем по оси Y */
+    justify-content: center; /* Центрируем по оси X */
+
+    flex-grow: 1;            /* Дает возможность занять все доступное пространство */
+  }
+  .top_menu_div_with_mobail_text p{
+    font-size: 4.5vw;
+
+    font-family: OldStyle;
+    color: #525252;
+  }
+
+  .nav{
+    /*Выравниваем все содержимое по центру по низу*/
+    display: flex;           /* Включаем Flexbox */
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: flex-start;;   /* Выравнивание внизу */
+  }
+  .nav_content{
+    width: 100%;
+    height: 85%;
+  }
+  .nav_content p{
+    font-size: 7vw;
+    font-family: OldStyle;
+    color: #ffffff;
+
+    margin: 15px auto; /* Уменьшаем отступы сверху и снизу до 5px */
+  }
+  .nav_content iframe{
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /*Блок с картой*/
+  .map{
+      width: 100%;
+      height: 100%;
+  }
+
+}
+
+/*Для экранов размером меньше 550 пикселей*/
+@media screen and (max-width: 550px){
+  .top_menu_div_with_mobail_text p{
+    font-size: 6vw;
+
+    font-family: OldStyle;
+    color: #525252;
+  }
+
+  .nav_content{
+    width: 100%;
+    height: 85%;
+  }
 }
